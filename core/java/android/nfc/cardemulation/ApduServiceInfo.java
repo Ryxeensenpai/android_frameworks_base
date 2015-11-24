@@ -1,4 +1,7 @@
 /*
+ * Copyright (c) 2018, The Linux Foundation. All rights reserved.
+ * Not a Contribution.
+ *
  * Copyright (C) 2013 The Android Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -68,6 +71,7 @@ public final class ApduServiceInfo implements Parcelable {
     /**
      * The service that implements this
      */
+    @UnsupportedAppUsage
     private final ResolveInfo mService;
 
     /**
@@ -95,11 +99,13 @@ public final class ApduServiceInfo implements Parcelable {
     /**
      * Mapping from category to static AID group
      */
+    @UnsupportedAppUsage
     private final HashMap<String, AidGroup> mStaticAidGroups;
 
     /**
      * Mapping from category to dynamic AID group
      */
+    @UnsupportedAppUsage
     private final HashMap<String, AidGroup> mDynamicAidGroups;
 
     /**
