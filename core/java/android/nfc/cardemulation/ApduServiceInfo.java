@@ -27,6 +27,7 @@ import android.annotation.FlaggedApi;
 import android.annotation.NonNull;
 import android.annotation.Nullable;
 import android.annotation.SystemApi;
+import android.annotation.SuppressLint;
 import android.compat.annotation.UnsupportedAppUsage;
 import android.content.ComponentName;
 import android.content.pm.PackageManager;
@@ -50,6 +51,7 @@ import android.util.proto.ProtoOutputStream;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 
+import java.io.FileDescriptor;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -601,6 +603,10 @@ public final class ApduServiceInfo implements Parcelable {
         mDynamicAidGroups.put(aidGroup.getCategory(), aidGroup);
     }
 
+    public void setOrReplaceDynamicAidGroup(@NonNull AidGroup aidGroup) {
+        setDynamicAidGroup(aidGroup);
+    }
+
     /**
      * Sets the off host Secure Element.
      * @param  offHost  Secure Element to set. Only accept strings with prefix SIM or prefix eSE.
@@ -622,6 +628,10 @@ public final class ApduServiceInfo implements Parcelable {
     @FlaggedApi(Flags.FLAG_ENABLE_NFC_MAINLINE)
     public void resetOffHostSecureElement() {
         mOffHostName = mStaticOffHostName;
+    }
+
+    public void unsetOffHostSecureElement() {
+        resetOffHostSecureElement();
     }
 
     /**
@@ -833,6 +843,16 @@ public final class ApduServiceInfo implements Parcelable {
         pw.println("    Requires Device ScreenOn: " + mRequiresDeviceScreenOn);
     }
 
+    public void dump(@NonNull @SuppressLint("UseParcelFileDescriptor") FileDescriptor fd, @NonNull PrintWriter pw, @NonNull String[] args) {
+        try {
+            ParcelFileDescriptor parcelFd = ParcelFileDescriptor.dup(fd);
+            if (parcelFd != null) {
+                dump(parcelFd, pw, args);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     /**
      * Enable or disable this CATEGORY_OTHER service.

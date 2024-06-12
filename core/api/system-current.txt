@@ -9865,6 +9865,7 @@ package android.nfc.cardemulation {
     ctor @FlaggedApi("android.nfc.enable_nfc_mainline") public ApduServiceInfo(@NonNull android.content.pm.PackageManager, @NonNull android.content.pm.ResolveInfo, boolean) throws java.io.IOException, org.xmlpull.v1.XmlPullParserException;
     method @FlaggedApi("android.nfc.enable_nfc_mainline") public int describeContents();
     method @FlaggedApi("android.nfc.enable_nfc_mainline") public void dump(@NonNull android.os.ParcelFileDescriptor, @NonNull java.io.PrintWriter, @NonNull String[]);
+    method public void dump(@NonNull java.io.FileDescriptor, @NonNull java.io.PrintWriter, @NonNull String[]);
     method @FlaggedApi("android.nfc.enable_nfc_mainline") public void dumpDebug(@NonNull android.util.proto.ProtoOutputStream);
     method @FlaggedApi("android.nfc.enable_nfc_mainline") @NonNull public java.util.List<android.nfc.cardemulation.AidGroup> getAidGroups();
     method @FlaggedApi("android.nfc.enable_nfc_mainline") @NonNull public java.util.List<java.lang.String> getAids();
@@ -9890,7 +9891,9 @@ package android.nfc.cardemulation {
     method @FlaggedApi("android.nfc.enable_nfc_mainline") public void resetOffHostSecureElement();
     method @FlaggedApi("android.nfc.enable_nfc_mainline") public void setDynamicAidGroup(@NonNull android.nfc.cardemulation.AidGroup);
     method @FlaggedApi("android.nfc.enable_nfc_mainline") public void setOffHostSecureElement(@NonNull String);
+    method public void setOrReplaceDynamicAidGroup(@NonNull android.nfc.cardemulation.AidGroup);
     method @FlaggedApi("android.nfc.enable_nfc_mainline") public void setOtherServiceEnabled(boolean);
+    method public void unsetOffHostSecureElement();
     method @FlaggedApi("android.nfc.enable_nfc_mainline") public void writeToParcel(@NonNull android.os.Parcel, int);
     field @FlaggedApi("android.nfc.enable_nfc_mainline") @NonNull public static final android.os.Parcelable.Creator<android.nfc.cardemulation.ApduServiceInfo> CREATOR;
   }
@@ -9903,6 +9906,7 @@ package android.nfc.cardemulation {
     ctor @FlaggedApi("android.nfc.enable_nfc_mainline") public NfcFServiceInfo(@NonNull android.content.pm.PackageManager, @NonNull android.content.pm.ResolveInfo) throws java.io.IOException, org.xmlpull.v1.XmlPullParserException;
     method @FlaggedApi("android.nfc.enable_nfc_mainline") public int describeContents();
     method @FlaggedApi("android.nfc.enable_nfc_mainline") public void dump(@NonNull android.os.ParcelFileDescriptor, @NonNull java.io.PrintWriter, @NonNull String[]);
+    method public void dump(@NonNull java.io.FileDescriptor, @NonNull java.io.PrintWriter, @NonNull String[]);
     method @FlaggedApi("android.nfc.enable_nfc_mainline") public void dumpDebug(@NonNull android.util.proto.ProtoOutputStream);
     method @FlaggedApi("android.nfc.enable_nfc_mainline") @NonNull public android.content.ComponentName getComponent();
     method @FlaggedApi("android.nfc.enable_nfc_mainline") @NonNull public String getDescription();
@@ -9914,6 +9918,8 @@ package android.nfc.cardemulation {
     method @FlaggedApi("android.nfc.enable_nfc_mainline") @NonNull public CharSequence loadLabel(@NonNull android.content.pm.PackageManager);
     method @FlaggedApi("android.nfc.enable_nfc_mainline") public void setDynamicNfcid2(@NonNull String);
     method @FlaggedApi("android.nfc.enable_nfc_mainline") public void setDynamicSystemCode(@NonNull String);
+    method public void setOrReplaceDynamicNfcid2(@NonNull String);
+    method public void setOrReplaceDynamicSystemCode(@NonNull String);
     method @FlaggedApi("android.nfc.enable_nfc_mainline") public void writeToParcel(@NonNull android.os.Parcel, int);
     field @FlaggedApi("android.nfc.enable_nfc_mainline") @NonNull public static final android.os.Parcelable.Creator<android.nfc.cardemulation.NfcFServiceInfo> CREATOR;
   }

@@ -24,6 +24,7 @@ import android.annotation.FlaggedApi;
 import android.annotation.NonNull;
 import android.annotation.Nullable;
 import android.annotation.SystemApi;
+import android.annotation.SuppressLint;
 import android.content.ComponentName;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
@@ -45,6 +46,7 @@ import android.util.proto.ProtoOutputStream;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 
+import java.io.FileDescriptor;
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -245,6 +247,10 @@ public final class NfcFServiceInfo implements Parcelable {
         mDynamicSystemCode = systemCode;
     }
 
+    public void setOrReplaceDynamicSystemCode(@NonNull String systemCode) {
+        setDynamicSystemCode(systemCode);
+    }
+
     /**
      * Returns NFC ID2.
      *
@@ -264,6 +270,10 @@ public final class NfcFServiceInfo implements Parcelable {
     @FlaggedApi(Flags.FLAG_ENABLE_NFC_MAINLINE)
     public void setDynamicNfcid2(@NonNull String nfcid2) {
         mDynamicNfcid2 = nfcid2;
+    }
+
+    public void setOrReplaceDynamicNfcid2(@NonNull String nfcid2) {
+        setDynamicNfcid2(nfcid2);
     }
 
     /**
@@ -424,6 +434,17 @@ public final class NfcFServiceInfo implements Parcelable {
         pw.println("    System Code: " + getSystemCode());
         pw.println("    NFCID2: " + getNfcid2());
         pw.println("    T3tPmm: " + getT3tPmm());
+    }
+
+    public void dump(@NonNull @SuppressLint("UseParcelFileDescriptor") FileDescriptor fd, @NonNull PrintWriter pw, @NonNull String[] args) {
+        try {
+            ParcelFileDescriptor parcelFd = ParcelFileDescriptor.dup(fd);
+            if (parcelFd != null) {
+                dump(parcelFd, pw, args);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
