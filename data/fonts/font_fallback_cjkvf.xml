@@ -792,6 +792,18 @@
         </font>
     </family>
     <family lang="ja">
+        <font weight="400" style="normal" index="0" postScriptName="ShinGo-Regular"
+            supportedAxes="wght">
+            ../../product/fonts/sgr.ttf
+            <!-- The default instance of NotoSansCJK-Regular.ttc is wght=100, so specify wght=400
+                 for making regular style as default. -->
+            <axis tag="wght" stylevalue="400" />
+        </font>
+        <font weight="400" style="normal" fallbackFor="serif">NotoSerifCJK-Regular.ttc</font>
+        <font weight="500" style="normal" postScriptName="ShinGo-Medium">../../product/fonts/sgm.ttf</font>
+        <font weight="700" style="normal" postScriptName="ShinGo-Medium">../../product/fonts/sgm.ttf</font>
+    </family>
+    <family lang="ja">
         <font weight="400" style="normal" index="0" postScriptName="NotoSansCJKJP-Regular"
             supportedAxes="wght">
             NotoSansCJK-Regular.ttc
