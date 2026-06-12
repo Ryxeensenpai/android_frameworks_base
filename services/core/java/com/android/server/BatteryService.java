@@ -69,6 +69,8 @@ import android.os.Trace;
 import android.os.UEventObserver;
 import android.os.UserHandle;
 import android.provider.Settings;
+
+import com.android.internal.os.PowerProfile;
 import android.service.battery.BatteryServiceDumpProto;
 import android.sysprop.PowerProperties;
 import android.util.EventLog;
@@ -731,6 +733,12 @@ public final class BatteryService extends SystemService {
     @VisibleForTesting
     public void update(android.hardware.health.HealthInfo info) {
         traceBegin("HealthInfoUpdate");
+
+        int designCapMah = (int) Math.round(new PowerProfile(mContext)
+                .getAveragePower(PowerProfile.POWER_BATTERY_CAPACITY));
+            if (designCapMah > 0) {
+            info.batteryFullChargeDesignCapacityUah = designCapMah * 1000;
+        }
 
         Trace.traceCounter(
                 Trace.TRACE_TAG_POWER, "BatteryChargeCounter", info.batteryChargeCounterUah);
